@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificador de Senha</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            transition: background-color 0.5s;
+        }
+        .container {
+            text-align: center;
+        }
+        #message {
+            font-size: 24px;
+            margin: 20px;
+        }
+        #video-frame {
+            display: none;
+            margin-top: 20px;
+            width: 100%;
+            max-width: 600px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Digite a senha:</h1>
+        <input type="password" id="password" placeholder="Senha">
+        <button onclick="checkPassword()">Enviar</button>
+        <p id="message"></p>
+        <!-- O iframe agora começa com uma URL vazia -->
+        <iframe id="video-frame" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    </div>
+
+    <script>
+        function checkPassword() {
+            const passwordInput = document.getElementById('password').value;
+            const message = document.getElementById('message');
+            const videoFrame = document.getElementById('video-frame');
+
+            if (passwordInput === "sexo") { // Ajuste a senha conforme necessário
+                document.body.style.backgroundColor = "green";
+                message.textContent = "Resposta correta!";
+                
+                // Define a URL do vídeo e exibe o iframe
+                videoFrame.src = "https://player.vimeo.com/video/1024530426?t=0&autoplay=1";
+                videoFrame.style.display = "block";
+            } else {
+                document.body.style.backgroundColor = "red";
+                message.textContent = "Resposta errada!";
+                setTimeout(() => {
+                    document.body.style.backgroundColor = "";
+                    message.textContent = "";
+                }, 1000);
+            }
+        }
+    </script>
+</body>
+</html>
